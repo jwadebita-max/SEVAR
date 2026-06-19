@@ -1,0 +1,376 @@
+/* ==========================================================================
+   1. الستايل الأصلي والأساسي ديال التطبيق (SEVAR)
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 440px;
+    height: 680px; /* تثبيت الطول لمنع الشاشة من التمدد والتقلص */
+    padding: 32px 24px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 1px solid #f1f5f9;
+
+    /* توزيع المحتوى عمودياً بالتساوي */
+    display: flex;
+    flex-direction: column;
+}
+
+/* نظام التنقل العلوي */
+.card-header-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    height: 30px; /* تثبيت طول الهيدر */
+}
+
+.nav-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.nav-arrow:hover {
+    color: #1e293b;
+    transform: scale(1.1);
+}
+
+.nav-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.step-progress-bar {
+    width: 70%;
+    height: 6px;
+    background-color: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 33.33%; /* تتغير ديناميكياً بـ JS */
+    height: 100%;
+    background-color: #1e293b;
+    transition: width 0.3s ease-in-out;
+}
+
+/* إخفاء الخطوات الافتراضي */
+.form-step {
+    display: none;
+}
+
+/* إظهار الخطوة النشطة وتوزيع عناصرها */
+.step-active {
+    display: flex !important;
+    flex-direction: column;
+    flex-grow: 1; /* جعل الخطوة تأخذ المساحة الكاملة المتبقية ف الكارت */
+}
+
+/* التحكم في محتوى الخطوة ودفع الأزرار لتحت */
+.form-step main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between; /* العناوين الفوق والأزرار ديما لتحت ف نفس البلاصة */
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 160px; /* تصغير الصور قليلاً لتناسب الحجم الثابت */
+    margin: 0 auto 16px auto;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+}
+
+.main-headline {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 16px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.custom-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#phone-input {
+    text-align: left;
+    direction: ltr;
+}
+
+.custom-input:focus {
+    border-color: #1e293b;
+}
+
+/* حاوية الـ OTP */
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    direction: ltr;
+}
+
+.otp-input {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.otp-input:focus {
+    border-color: #1e293b;
+}
+
+/* الأزرار */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto; /* دفع الأزرار إلى الأسفل تماماً */
+}
+
+.btn {
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: none;
+}
+
+.btn-next, .btn-verify, .btn-submit-form {
+    background-color: #1e293b;
+    color: #ffffff;
+    border-radius: 90px 0px 90px 0px !important;
+    box-shadow: 0 4px 6px -1px rgba(30, 41, 59, 0.2);
+}
+
+.btn-next:hover, .btn-verify:hover, .btn-submit-form:hover {
+    background-color: #0f172a;
+    transform: translateY(-1px);
+}
+
+.btn-exit {
+    background-color: #ffffff;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+    border-radius: 0px 90px 0px 90px !important;
+}
+
+.btn-resend {
+    background-color: #ffffff;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+    border-radius: 0px 90px 0px 90px !important;
+}
+
+.btn-exit:hover, .btn-resend:hover {
+    background-color: #f8fafc;
+    color: #334155;
+    transform: translateY(-1px);
+}
+
+.partner-text {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* ==========================================================================
+   2. التحديثات الجديدة لتوافق الأسئلة الإضافية (بائع/مشتري، الجنسية، إلخ...)
+   ========================================================================== */
+
+/* حاوية خيارات الراديو المخصصة */
+.role-selection-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.role-option {
+    cursor: pointer;
+    width: 100%;
+}
+
+/* إخفاء الدائرة الافتراضية للراديو */
+.role-radio {
+    display: none;
+}
+
+/* تصميم الصندوق الخاص بالخيار ليطابق الأزرار المائلة */
+.role-box {
+    background-color: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    border-radius: 90px 0px 90px 0px !important;
+}
+
+.role-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #475569;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* التغيير في الحالة النشطة عند اختيار الراديو */
+.role-radio:checked + .role-box {
+    background-color: #1e293b;
+    border-color: #1e293b;
+}
+
+.role-radio:checked + .role-box .role-title {
+    color: #ffffff;
+}
+
+/* تحسينات حقل التاريخ (Date Input) */
+input[type="date"].custom-input {
+    text-align: right;
+    direction: rtl;
+    color: #1e293b;
+}
+
+/* تحسينات القائمة المنسدلة (Select Input) */
+select.custom-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: left 16px center;
+    background-size: 18px;
+    cursor: pointer;
+}
+
+/* ستايل خطوة رفع البطاقة الوطنية الجديدة */
+.cin-upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.cin-box {
+    background-color: #f1f5f9;
+    border: 2px dashed #cbd5e1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border-radius: 90px 0px 90px 0px;
+    background-size: cover;
+    background-position: center;
+    min-height: 85px; /* تصغير متناسق للحجم الثابت للبطاقة */
+}
+
+.cin-box:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+.cin-icon {
+    color: #64748b;
+}
+
+.cin-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+/* حالة ملي كتكون الصورة محملة بنجاح */
+.cin-box.has-image {
+    border-style: solid;
+    border-color: #1e293b;
+}
+
+.cin-box.has-image .cin-icon,
+.cin-box.has-image .cin-text {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #0f172a;
+}
+
+/* ==========================================================================
+   3. الميديا كويري (تجاوب الشاشات الصغيرة وتطبيق وضعية ملء الشاشة)
+   ========================================================================== */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+        background-color: #ffffff; /* جعل الخلفية بيضاء مريحة ف الهاتف */
+    }
+    .auth-card {
+        padding: 24px 20px;
+        height: 100vh; /* يعمر الشاشة كاملة ديال الهاتف طولاً بحال التطبيقات */
+        max-width: 100%;
+        border-radius: 0; /* تحييد الحواف ف الهاتف */
+        border: none;
+    }
+    .otp-input { width: 48px; height: 48px; font-size: 18px; }
+}

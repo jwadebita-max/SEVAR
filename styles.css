@@ -1,0 +1,151 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    background-color: #f8fafc;
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 32px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 1px solid #f1f5f9;
+}
+
+.brand-header {
+    margin-bottom: 32px;
+
+}
+
+.logo-img {
+    max-height: 42px;
+    object-fit: contain;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto 32px auto;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+}
+
+
+.main-headline {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.sub-headline {
+    font-size: 14.5px;
+    font-weight: 400;
+    color: #64748b; /* لون رمادي أنيق يعطي عمق بصري */
+    line-height: 1.6;
+    margin-bottom: 36px;
+    padding: 0 8px;
+}
+
+/* حاوي الأزرار */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* الاستايل العام للأزرار */
+.btn {
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px; /* انحناء عصري حواف الأزرار */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    border: none;
+    gap: 10px;
+    padding: 0 24px;
+}
+
+/* زر Google القياسي الاحترافي */
+.btn-google {
+    background-color: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 90px 0px 90px 0px !important;
+}
+
+.btn-google:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+}
+
+/* زر الهاتف بلون المنصة الداكن الأنيق */
+.btn-phone {
+    background-color: #1e293b;
+    color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(30, 41, 59, 0.2);
+    border-radius: 0px 90px 0px 90px !important;
+}
+
+.btn-phone:hover {
+    background-color: #0f172a;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(30, 41, 59, 0.25);
+}
+
+/* تنسيق الأيقونات داخل الأزرار */
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 12px; /* مسافة على اليسار لتتناسب مع اتجاه الكتابة العربي RTL */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* تحسينات الشاشات الصغيرة (الهواتف) */
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+    .auth-card {
+        padding: 32px 20px;
+        border-radius: 20px;
+    }
+    .main-headline {
+        font-size: 21px;
+    }
+    .sub-headline {
+        font-size: 13.5px;
+        margin-bottom: 28px;
+    }
+}

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVAR - التسجيل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_phone.css">
+</head>
+<body>
+
+<div class="auth-card">
+    <!-- نظام التنقّل العلوي الموحد -->
+    <div class="card-header-navigation">
+        <!-- سهم اليمين (التالي) -->
+        <button class="nav-arrow" id="nav-next-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                 stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+            </svg>
+        </button>
+
+        <!-- شريط التقدم -->
+        <div class="step-progress-bar">
+            <div class="progress-fill" id="main-progress"></div>
+        </div>
+
+        <!-- سهم اليسار (السابق) -->
+        <button class="nav-arrow" id="nav-prev-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                 stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- =================== الخطوة 1: رقم الهاتف =================== -->
+    <div class="form-step step-active" id="step-1">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Phone Verification" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">دخل رقم الهاتف</h1>
+            <div class="input-group">
+                <input type="tel" id="phone-input" placeholder="+212 600-000000" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== الخطوة 2: كود التحقق OTP =================== -->
+    <div class="form-step" id="step-2">
+        <div class="hero-container">
+            <img src="images/otp_illustration.jpg" alt="Verification Code" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">كود التحقق</h1>
+            <div class="otp-container">
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-verify action-next">تحقق</button>
+                <button class="btn btn-resend">إعادة الإرسال</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== الخطوة 3: الاسم الكامل =================== -->
+    <div class="form-step" id="step-3">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Profile Creation" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">دخل الإسم</h1>
+            <div class="input-group">
+                <input type="text" id="name-input" placeholder="الاسم الكامل" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== الخطوة 4: اختيار نوع الحساب (مشتري / بائع) =================== -->
+    <div class="form-step" id="step-4">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="User Type" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">شنو هو الدور ديالك؟</h1>
+            <div class="role-selection-container">
+                <label class="role-option">
+                    <input type="radio" name="user-role" value="buyer" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">باغي نشري خدمة (مشتري)</span>
+                    </div>
+                </label>
+                <label class="role-option">
+                    <input type="radio" name="user-role" value="seller" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">باغي نبيع خدمة (بائع)</span>
+                    </div>
+                </label>
+            </div>
+            <p class="partner-text" style="margin-top: 20px;">Next level Partners</p>
+        </main>
+    </div>
+
+    <!-- =================== مسار المشتري - الخطوة 5A: الموقع الجغرافي =================== -->
+    <div class="form-step" id="step-5A">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Location" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">شحال الموقع ديالك؟</h1>
+            <div class="input-group">
+                <input type="text" id="location-input" placeholder="مثلاً: الدار البيضاء، المعاريف" class="custom-input"
+                       required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار المشتري - الخطوة الفاصلة: ترحيب المشتري =================== -->
+    <div class="form-step" id="step-welcome-buyer">
+        <div class="hero-container">
+            <img src="images/good-look.jpg" alt="Welcome Buyer" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline welcome-message-text">مرحباً بك!</h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 32px;">
+                مرحبا بك معانا في العائلة! الحساب ديالك واجد دابا كمشتري. غادي نمشيو نيشان باش تشوف المنصة وتكتشف
+                الخدمات القريبة منك.
+            </p>
+            <div class="button-group">
+                <button class="btn btn-submit-form id-final-submit">فعل الحساب ديالك</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة 5B: تاريخ الازدياد =================== -->
+    <div class="form-step" id="step-5B">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Birthdate" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">تاريخ الازدياد ديالك</h1>
+            <div class="input-group">
+                <input type="date" id="birthdate-input" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة 6B: رقم البطاقة الوطنية =================== -->
+    <div class="form-step" id="step-6B">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="ID Card" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">رقم البطاقة الوطنية</h1>
+            <div class="input-group">
+                <input type="text" id="cin-input" placeholder="مثلاً: AB123456" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="form-step" id="step-cin-upload">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="ID Upload" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">صور البطاقة الوطنية</h1>
+            <p style="font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5;">
+                يرجى تصوير أو رفع واجهة وخلفية البطاقة بنسخة واضحة جداً لنتمكن من قراءة البيانات تلقائياً.
+            </p>
+
+            <div class="cin-upload-container">
+                <div class="cin-box" id="cin-front-box" onclick="triggerCinUpload('front')">
+                    <div class="cin-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/>
+                        </svg>
+                    </div>
+                    <span class="cin-text" id="text-front">الجهة الأمامية للبطاقة</span>
+                    <input type="file" id="input-cin-front" accept="image/*" style="display: none;"
+                           onchange="previewCinImage(this, 'front')">
+                </div>
+
+                <div class="cin-box" id="cin-back-box" onclick="triggerCinUpload('back')">
+                    <div class="cin-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/>
+                        </svg>
+                    </div>
+                    <span class="cin-text" id="text-back">الجهة الخلفية للبطاقة</span>
+                    <input type="file" id="input-cin-back" accept="image/*" style="display: none;"
+                           onchange="previewCinImage(this, 'back')">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة 7B: الجنس (ذكر / أنثى) =================== -->
+    <div class="form-step" id="step-7B">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Gender" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">الجنس</h1>
+            <div class="role-selection-container">
+                <label class="role-option">
+                    <input type="radio" name="gender" value="male" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">ذكر</span>
+                    </div>
+                </label>
+                <label class="role-option">
+                    <input type="radio" name="gender" value="female" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">أنثى</span>
+                    </div>
+                </label>
+            </div>
+            <p class="partner-text" style="margin-top: 20px;">Next level Partners</p>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة 8B: الجنسية =================== -->
+    <div class="form-step" id="step-8B">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Citizenship" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">الجنسية ديالك</h1>
+            <div class="input-group">
+                <select id="country-select" class="custom-input" required>
+                    <option value="" disabled selected>اختر بلدك من القائمة</option>
+                    <option value="AF">أفغانستان (Afghanistan)</option>
+                    <option value="AL">ألبانيا (Albania)</option>
+                    <option value="DZ">الجزائر (Algeria)</option>
+                    <option value="AD">أندورا (Andorra)</option>
+                    <option value="AO">أنغولا (Angola)</option>
+                    <option value="AR">الأرجنتين (Argentina)</option>
+                    <option value="AM">أرمينيا (Armenia)</option>
+                    <option value="AU">أستراليا (Australia)</option>
+                    <option value="AT">النمسا (Austria)</option>
+                    <option value="AZ">أذربيجان (Azerbaijan)</option>
+                    <option value="BH">البحرين (Bahrain)</option>
+                    <option value="BD">بغلاديش (Bangladesh)</option>
+                    <option value="BE">بلجيكا (Belgium)</option>
+                    <option value="BR">البرازيل (Brazil)</option>
+                    <option value="CA">كندا (Canada)</option>
+                    <option value="CL">شيلي (Chile)</option>
+                    <option value="CN">الصين (China)</option>
+                    <option value="CO">كولومبيا (Colombia)</option>
+                    <option value="HR">كرواتيا (Croatia)</option>
+                    <option value="CU">كوبا (Cuba)</option>
+                    <option value="CY">قبرص (Cyprus)</option>
+                    <option value="DK">الدانمارك (Denmark)</option>
+                    <option value="DJ">جيبوتي (Djibouti)</option>
+                    <option value="EG">مصر (Egypt)</option>
+                    <option value="FI">فنلندا (Finland)</option>
+                    <option value="FR">فرنسا (France)</option>
+                    <option value="DE">ألمانيا (Germany)</option>
+                    <option value="GR">اليونان (Greece)</option>
+                    <option value="IN">الهند (India)</option>
+                    <option value="ID">إندونيسيا (Indonesia)</option>
+                    <option value="IQ">العراق (Iraq)</option>
+                    <option value="IE">أيرلندا (Ireland)</option>
+                    <option value="IT">إيطاليا (Italy)</option>
+                    <option value="JP">اليابان (Japan)</option>
+                    <option value="JO">الأردن (Jordan)</option>
+                    <option value="KW">الكويت (Kuwait)</option>
+                    <option value="LB">لبنان (Lebanon)</option>
+                    <option value="LY">ليبيا (Libya)</option>
+                    <option value="MA">المغرب (Morocco)</option>
+                    <option value="MX">المكسيك (Mexico)</option>
+                    <option value="NL">هولندا (Netherlands)</option>
+                    <option value="NZ">نيوزيلندا (New Zealand)</option>
+                    <option value="NO">النرويج (Norway)</option>
+                    <option value="OM">عمان (Oman)</option>
+                    <option value="PK">باكستان (Pakistan)</option>
+                    <option value="PS">فلسطين (Palestine)</option>
+                    <option value="PT">البرتغال (Portugal)</option>
+                    <option value="QA">قطر (Qatar)</option>
+                    <option value="RU">روسيا (Russia)</option>
+                    <option value="SA">المملكة العربية السعودية (Saudi Arabia)</option>
+                    <option value="SEN">السنغال (Senegal)</option>
+                    <option value="ZA">جنوب أفريقيا (South Africa)</option>
+                    <option value="ES">إسبانيا (Spain)</option>
+                    <option value="SD">السودان (Sudan)</option>
+                    <option value="SE">السويد (Sweden)</option>
+                    <option value="CH">سويسرا (Switzerland)</option>
+                    <option value="SY">سوريا (Syria)</option>
+                    <option value="TN">تونس (Tunisia)</option>
+                    <option value="TR">تركيا (Turkey)</option>
+                    <option value="AE">الإمارات العربية المتحدة (UAE)</option>
+                    <option value="GB">المملكة المتحدة (UK)</option>
+                    <option value="US">الولايات المتحدة الأمريكية (USA)</option>
+                    <option value="YE">اليمن (Yemen)</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة 9B: سنوات الخبرة ووصف الخدمة (مجموعين) =================== -->
+    <div class="form-step" id="step-9B">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Experience and Description" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">الخبرة والخدمة</h1>
+            <div class="input-group" style="margin-bottom: 16px;">
+                <input type="number" id="experience-input" placeholder="عدد سنوات الخبرة (مثال: 3)" class="custom-input"
+                       min="0" required>
+            </div>
+            <div class="input-group">
+                <textarea id="description-input" placeholder="اكتب وصفاً مختصراً للخدمة اللي كتقدمها..."
+                          class="custom-input" style="height: 100px; padding: 12px 16px; resize: none;"
+                          required></textarea>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة 10B: اللغات =================== -->
+    <div class="form-step" id="step-10B">
+        <div class="hero-container">
+            <img src="images/typing_info.jpg" alt="Languages" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">اللغات اللي كتهضر بيها</h1>
+            <div class="input-group">
+                <select id="language-select" class="custom-input" required>
+                    <option value="" disabled selected>اختر اللغة الأساسية</option>
+                    <option value="AR">العربية (Arabic)</option>
+                    <option value="BER">الأمازيغية (Berber)</option>
+                    <option value="FR">الفرنسية (French)</option>
+                    <option value="EN">الإنجليزية (English)</option>
+                    <option value="ES">الإسبانية (Spanish)</option>
+                    <option value="DE">الألمانية (German)</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">التالي</button>
+                <button class="btn btn-exit">الخروج</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== مسار البائع - الخطوة الفاصلة والأخيرة: ترحيب البائع =================== -->
+    <div class="form-step" id="step-welcome-seller">
+        <div class="hero-container">
+            <img src="images/good-look.jpg" alt="Welcome Seller" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline welcome-message-text">مرحباً بك!</h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 32px;">
+                مرحبا بك معانا في العائلة! الحساب ديالك كبائع واجد دابا. غادي نمشيو نيشان للمنصة باش تبدا تقدم الخدمات
+                ديالك وتستقبل الطلبات.
+            </p>
+            <div class="button-group">
+                <button class="btn btn-submit-form id-final-submit">فعل الحساب ديالك</button>
+                <p class="partner-text">Next level Partners</p>
+ xzsaedew43e           </div>
+        </main>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    let currentStepIndex = 0;
+    let currentPath = ['step-1', 'step-2', 'step-3', 'step-4'];
+
+    const stepsElements = document.querySelectorAll('.form-step');
+    const progressFill = document.getElementById('main-progress');
+    const prevArrow = document.getElementById('nav-prev-arrow');
+    const nextArrow = document.getElementById('nav-next-arrow');
+    const nameInput = document.getElementById('name-input');
+    const welcomeTexts = document.querySelectorAll('.welcome-message-text');
+
+    // تسيير المسار الديناميكي (مشتري أو بائع)
+    function updateDynamicPath() {
+        const checkedRole = document.querySelector('input[name="user-role"]:checked');
+        const selectedRole = checkedRole ? checkedRole.value : 'buyer';
+
+        if (selectedRole === 'buyer') {
+            currentPath = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5A', 'step-welcome-buyer'];
+        } else {
+            // إضافة خطوة رفع صور البطاقة الوطنية للمسار الخاص بالبائع
+            currentPath = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5B', 'step-6B', 'step-cin-upload', 'step-7B', 'step-8B', 'step-9B', 'step-10B', 'step-welcome-seller'];
+        }
+    }
+
+    // تحديث واجهة الصفحة والخطوات وشريط التقدم
+    function updateFormLayout() {
+        const currentStepId = currentPath[currentStepIndex];
+
+        // تخصيص رسالة الترحيب باسم المستخدم
+        if (currentStepId === 'step-welcome-buyer' || currentStepId === 'step-welcome-seller') {
+            const userName = nameInput.value.trim() || 'صاحبي';
+            welcomeTexts.forEach(txt => {
+                txt.innerText = `مرحباً بك يا ${userName}! 👋`;
+            });
+        }
+
+        // إظهار الخطوة الحالية وإخفاء الباقي
+        stepsElements.forEach(step => {
+            if (step.id === currentStepId) {
+                step.classList.add('step-active');
+            } else {
+                step.classList.remove('step-active');
+            }
+        });
+
+        // تحديث شريط التقدم العلوي
+        const progressWidth = ((currentStepIndex + 1) / currentPath.length) * 100;
+        progressFill.style.width = `${progressWidth}%`;
+
+        // إخفاء أو إظهار أسهم التنقل
+        if (currentStepIndex === 0) {
+            prevArrow.classList.add('nav-disabled');
+        } else {
+            prevArrow.classList.remove('nav-disabled');
+        }
+
+        if (currentStepIndex === currentPath.length - 1 || currentStepId === 'step-4' || currentStepId === 'step-7B') {
+            nextArrow.style.visibility = 'hidden';
+        } else {
+            nextArrow.style.visibility = 'visible';
+        }
+    }
+
+    // التحقق من أن المستخدم ملأ الحقول المطلوبة قبل الانتقال للخطوة الموالية
+    function validateFormStep() {
+        const currentStepId = currentPath[currentStepIndex];
+
+        if (currentStepId === 'step-1') {
+            const phone = document.getElementById('phone-input').value.trim();
+            if (phone === '') { alert('عافاك دخل رقم الهاتف أولاً!'); return false; }
+        } else if (currentStepId === 'step-2') {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            let otpFilled = true;
+            otpInputs.forEach(input => { if (input.value.trim() === '') otpFilled = false; });
+            if (!otpFilled) { alert('عافاك كمل كود التحقق المتكون من 4 أرقام!'); return false; }
+        } else if (currentStepId === 'step-3') {
+            if (nameInput.value.trim() === '') { alert('عافاك دخل الإسم الكامل ديالك!'); return false; }
+        } else if (currentStepId === 'step-5A') {
+            const loc = document.getElementById('location-input').value.trim();
+            if (loc === '') { alert('عافاك حدد الموقع ديالك!'); return false; }
+        } else if (currentStepId === 'step-5B') {
+            const bday = document.getElementById('birthdate-input').value;
+            if (!bday) { alert('عافاك دخل تاريخ الازدياد ديالك!'); return false; }
+        } else if (currentStepId === 'step-6B') {
+            const cin = document.getElementById('cin-input').value.trim();
+            if (cin === '') { alert('عافاك دخل رقم البطاقة الوطنية ديالك!'); return false; }
+        } else if (currentStepId === 'step-cin-upload') {
+            // التحقق من رفع واجهة وخلفية البطاقة معاً
+            const frontFile = document.getElementById('input-cin-front').files[0];
+            const backFile = document.getElementById('input-cin-back').files[0];
+            if (!frontFile || !backFile) { alert('عافاك صور أو ارفع الواجهة الأمامية والخلفية للبطاقة معاً!'); return false; }
+        } else if (currentStepId === 'step-8B') {
+            const country = document.getElementById('country-select').value;
+            if (country === '') { alert('عافاك اختار الجنسية ديالك من القائمة!'); return false; }
+        } else if (currentStepId === 'step-9B') {
+            const exp = document.getElementById('experience-input').value.trim();
+            const desc = document.getElementById('description-input').value.trim();
+            if (exp === '') { alert('عافاك دخل عدد سنوات الخبرة!'); return false; }
+            if (desc === '') { alert('عافاك دخل وصف الخدمة ديالك!'); return false; }
+        } else if (currentStepId === 'step-10B') {
+            const lang = document.getElementById('language-select').value;
+            if (lang === '') { alert('عافاك اختار اللغة الأساسية ديالك!'); return false; }
+        }
+        return true;
+    }
+
+    // الانتقال التلقائي عند اختيار نوع الحساب (مشتري / بائع)
+    document.querySelectorAll('.auto-submit-radio').forEach(radio => {
+        radio.addEventListener('change', () => {
+            setTimeout(() => {
+                if (currentPath[currentStepIndex] === 'step-4') { updateDynamicPath(); }
+                if (currentStepIndex < currentPath.length - 1) {
+                    currentStepIndex++;
+                    updateFormLayout();
+                }
+            }, 200);
+        });
+    });
+
+    // تشغيل أزرار "التالي" الموزعة في الخطوات
+    document.querySelectorAll('.action-next').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (validateFormStep()) {
+                if (currentPath[currentStepIndex] === 'step-4') { updateDynamicPath(); }
+                if (currentStepIndex < currentPath.length - 1) {
+                    currentStepIndex++;
+                    updateFormLayout();
+                }
+            }
+        });
+    });
+
+    // تشغيل سهم الانتقال للأمام العلوي
+    nextArrow.addEventListener('click', () => {
+        if (validateFormStep()) {
+            if (currentPath[currentStepIndex] === 'step-4') { updateDynamicPath(); }
+            if (currentStepIndex < currentPath.length - 1) {
+                currentStepIndex++;
+                updateFormLayout();
+            }
+        }
+    });
+
+    // تشغيل سهم الرجوع للخلف العلوي
+    prevArrow.addEventListener('click', () => {
+        if (currentStepIndex > 0) {
+            currentStepIndex--;
+            if (currentPath[currentStepIndex] === 'step-3' || currentPath[currentStepIndex] === 'step-cin-upload') { updateDynamicPath(); }
+            updateFormLayout();
+        }
+    });
+
+    // التنقل التلقائي بين خانات كود الـ OTP عند الكتابة أو المسح
+    const otpInputs = document.querySelectorAll('.otp-input');
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && index < otpInputs.length - 1) { otpInputs[index + 1].focus(); }
+        });
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) { otpInputs[index - 1].focus(); }
+        });
+    });
+
+    // زر التفعيل النهائي للحساب
+    document.querySelectorAll('.id-final-submit').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (validateFormStep()) {
+                alert('تبارك الله عليك! كاع المعلومات تسجلات بنجاح وتم إتمام العملية.');
+            }
+        });
+    });
+
+    // تشغيل النظام عند فتح الصفحة لأول مرة
+    updateDynamicPath();
+    updateFormLayout();
+});
+
+// دالة تفعيل الضغط على زر رفع الملفات المخفي عند النقر على المربع الخاص به
+function triggerCinUpload(side) {
+    document.getElementById(`input-cin-${side}`).click();
+}
+
+// دالة إظهار الصورة المصورة/المرفوعة (Preview) مباشرة داخل المربع
+function previewCinImage(input, side) {
+    const box = document.getElementById(`cin-${side}-box`);
+    const textSpan = document.getElementById(`text-${side}`);
+    const file = input.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            box.style.backgroundImage = `url('${e.target.result}')`;
+            box.classList.add('has-image');
+            textSpan.innerText = side === 'front' ? 'تمت إضافة الواجهة الأمامية ✓' : 'تمت إضافة الجهة الخلفية ✓';
+        }
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+</body>
+</html>
