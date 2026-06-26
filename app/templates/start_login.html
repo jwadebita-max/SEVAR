@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEVAR - كلامنا واحد</title>
+    <title>SEVAR - ÙƒÙ„Ø§Ù…Ù†Ø§ ÙˆØ§Ø­Ø¯</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 </head>
@@ -15,29 +15,29 @@
 
 <div class="auth-card">
     <header class="brand-header">
-        <img src="images/logo_original.png" alt="SEVAR Logo" class="logo-img">
+        <img src="{{ url_for('static', filename='images/logo_original.png') }}" alt="SEVAR Logo" class="logo-img">
     </header>
 
     <div class="hero-container">
-        <img src="images/welcom.jpg" alt="Welcome to SEVAR" class="hero-img">
+        <img src="{{ url_for('static', filename='images/welcom.jpg') }}" alt="Welcome to SEVAR" class="hero-img">
     </div>
 
     <main>
-        <h1 class="main-headline">كلامنا واحد</h1>
+        <h1 class="main-headline">ÙƒÙ„Ø§Ù…Ù†Ø§ ÙˆØ§Ø­Ø¯</h1>
         <p class="sub-headline">
-            بلا كثرة الوساطة، تفاهم على ثمنك وتوكل على الله.
+            Ø¨Ù„Ø§ ÙƒØ«Ø±Ø© Ø§Ù„ÙˆØ³Ø§Ø·Ø©ØŒ ØªÙØ§Ù‡Ù… Ø¹Ù„Ù‰ Ø«Ù…Ù†Ùƒ ÙˆØªÙˆÙƒÙ„ Ø¹Ù„Ù‰ Ø§Ù„Ù„Ù‡.
         </p>
 
         <div class="button-group">
 
-            <a href="phone_input.html" style="text-decoration: none; display: inline-block; width: 100%;">
+            <a href="{{ url_for('pages.onboarding') }}" style="text-decoration: none; display: inline-block; width: 100%;">
                 <button id="phone-btn" class="btn btn-phone">
                     <span class="btn-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="100%" height="100%">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/>
                         </svg>
                     </span>
-                    متابعة باستخدام الهاتف
+                    Ù…ØªØ§Ø¨Ø¹Ø© Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„Ù‡Ø§ØªÙ
                 </button>
             </a>
             <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">Next level Partners</p>
@@ -47,3 +47,4 @@
 
 </body>
 </html>
+

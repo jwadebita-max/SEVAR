@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVAR - Ù†Ø¸Ø§Ù… Ø§Ù„Ù…Ø·Ø§Ø¨Ù‚Ø© Ø§Ù„Ø°ÙƒÙŠ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;950&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; user-select: none; }
+        @media print { body { display: none !important; } }
+        .no-screenshot { -webkit-touch-callout: none; user-select: none; }
+        /* Ø¥Ø®ÙØ§Ø¡ Ø§Ù„Ø³ÙƒØ±ÙˆÙ„ Ø¨Ø§Ø± Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ Ù„ØªØ¬Ù…ÙŠÙ„ Ø§Ù„Ù‚ÙˆØ§Ø¦Ù… Ø§Ù„Ù…Ø³ØªÙ‚Ù„Ø© */
+        .custom-scroll::-webkit-scrollbar { width: 5px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col no-screenshot" oncontextmenu="return false;">
+
+    <!-- 1. NAVIGATION BAR (Ø§Ù„Ù‡ÙŠØ¯Ø± Ø§Ù„Ù…ÙˆØ­Ø¯) -->
+    <nav class="bg-neutral-900 text-white px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-50">
+        <button onclick="toggleSidebar('settingsSidebar')" class="text-xl p-2 hover:bg-neutral-800 rounded-lg transition">
+            <i class="fa-solid fa-bars text-gray-300"></i>
+        </button>
+        <div onclick="showPage('homePage')" class="text-2xl font-black tracking-wider text-white cursor-pointer select-none">
+            SEVAR
+        </div>
+        <button onclick="showPage('profilePage')" class="text-xl p-2 hover:bg-neutral-800 rounded-lg transition flex items-center justify-center">
+            <div class="w-8 h-8 rounded-full border border-gray-400 overflow-hidden">
+                <img id="navAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100" class="w-full h-full object-cover">
+            </div>
+        </button>
+    </nav>
+
+    <!-- 2. SETTINGS SIDEBAR DRAWER -->
+    <div id="settingsSidebar" class="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-l border-gray-200">
+        <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-neutral-900 text-white">
+            <h3 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-gear text-sm text-amber-400"></i> Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ø¹Ø§Ù…Ø©</h3>
+            <button onclick="toggleSidebar('settingsSidebar')" class="text-xl hover:text-gray-300"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="p-4 flex flex-col gap-1 overflow-y-auto h-[calc(100vh-80px)]">
+            <button onclick="showPage('homePage'); toggleSidebar('settingsSidebar')" class="w-full text-right p-3 hover:bg-gray-50 rounded-xl font-bold flex items-center gap-3"><i class="fa-solid fa-house text-gray-400 w-5"></i> Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</button>
+            <button onclick="showPage('privacyPage'); toggleSidebar('settingsSidebar')" class="w-full text-right p-3 hover:bg-gray-50 rounded-xl font-bold flex items-center gap-3"><i class="fa-solid fa-lock text-gray-400 w-5"></i> Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø®ØµÙˆØµÙŠØ©</button>
+            <button onclick="showPage('helpPage'); toggleSidebar('settingsSidebar')" class="w-full text-right p-3 hover:bg-gray-50 rounded-xl font-bold flex items-center gap-3"><i class="fa-solid fa-circle-question text-gray-400 w-5"></i> Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø© ÙˆØ§Ù„Ø¯Ø¹Ù…</button>
+        </div>
+    </div>
+    <div id="sidebarOverlay" onclick="toggleSidebar('settingsSidebar')" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+
+    <!-- ================= PAGE 1: HOME PAGE ================= -->
+    <div id="homePage" class="page-view flex-1 flex flex-col md:flex-row max-w-7xl w-full mx-auto p-4 gap-6">
+
+        <!-- Ø§Ù„Ø¬Ù‡Ø© Ø§Ù„ÙŠØ³Ø±Ù‰: Ù…Ù†Ø·Ù‚Ø© Ø§Ù„ØªØ±Ø­ÙŠØ¨ Ø§Ù„ØªÙŠ Ø³ØªØªØ­ÙˆÙ„ Ø¥Ù„Ù‰ Ù‚Ø§Ø¦Ù…Ø© Ù…Ù‡Ù†ÙŠÙŠÙ† Ø¨Ù€ Scroll Ù…Ø³ØªÙ‚Ù„ -->
+        <section class="w-full md:w-5/12 bg-white border border-gray-200 rounded-2xl p-6 flex flex-col shadow-sm h-[500px] md:h-[calc(100vh-140px)] sticky top-24">
+
+            <!-- Ø£) ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„ØªØ±Ø­ÙŠØ¨ Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ (ÙŠØ®ØªÙÙŠ Ø¹Ù†Ø¯ Ø§Ù„Ø¨Ø­Ø«) -->
+            <div id="defaultWelcomeBox" class="flex-1 flex flex-col items-center justify-center text-center">
+                <button class="w-20 h-20 border-2 border-dashed border-gray-300 text-gray-400 text-3xl rounded-full flex items-center justify-center bg-gray-50 mb-6">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <h1 class="text-2xl font-black mb-2 text-neutral-900">Ù…Ø±Ø­Ø¨Ø§Ù‹ ÙÙŠ SEVAR</h1>
+                <p class="text-gray-500 text-sm max-w-xs">Ø¥Ø®ØªØ§Ø± Ø¥Ø­Ø¯Ù‰ Ø§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ù…ØªØ§Ø­Ø© Ù…Ù† Ø§Ù„Ø£Ù‚Ø³Ø§Ù… Ø¹Ù„Ù‰ Ø§Ù„ÙŠÙ…ÙŠÙ† ÙˆØ­Ø¯Ø¯ Ù…ÙŠØ²Ø§Ù†ÙŠØªÙƒ ÙˆØ¹Ù†ÙˆØ§Ù†Ùƒ Ù„Ù†Ø¹Ø«Ø± Ù„Ùƒ Ø¹Ù„Ù‰ Ø£Ù‚Ø±Ø¨ Ø§Ù„Ù…Ø­ØªØ±ÙÙŠÙ†.</p>
+            </div>
+
+            <!-- Ø¨) ØµÙ†Ø¯ÙˆÙ‚ Ø¹Ø±Ø¶ ÙƒØ±ÙˆØª Ø§Ù„Ù…Ù‡Ù†ÙŠÙŠÙ† Ø§Ù„Ù‚Ø±ÙŠØ¨ÙŠÙ† (ÙŠØ¸Ù‡Ø± Ø¨Ø¹Ø¯ Ù…Ù„Ø¡ Ø§Ù„Ø§Ø³ØªÙ…Ø§Ø±Ø© Ø¨Ù€ Scroll Ù…Ø³ØªÙ‚Ù„) -->
+            <div id="proResultsBox" class="hidden flex-col h-full w-full text-right">
+                <div class="border-b border-gray-100 pb-3 mb-3 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-base font-black text-neutral-900">Ø§Ù„Ù…Ù‡Ù†ÙŠÙŠÙ† Ø§Ù„Ù…ØªØ§Ø­ÙŠÙ† Ø¨Ø§Ù„Ù‚Ø±Ø¨ Ù…Ù†Ùƒ</h3>
+                        <p id="searchSummaryText" class="text-xs text-gray-400 mt-0.5">ØªÙ… ØªØµÙÙŠØ© Ø§Ù„Ù†ØªØ§Ø¦Ø¬ Ø­Ø³Ø¨ Ø§Ù„Ø³Ø¹Ø± ÙˆØ§Ù„Ù…ÙˆÙ‚Ø¹</p>
+                    </div>
+                    <button onclick="resetWelcomeBox()" class="text-xs font-bold text-red-500 bg-red-50 px-2.5 py-1 rounded-lg hover:bg-red-100 transition">Ø¥Ù„ØºØ§Ø¡</button>
+                </div>
+
+                <!-- Ø­Ø§ÙˆÙŠØ© Ø§Ù„Ù…Ù‡Ù†ÙŠÙŠÙ† Ù…Ø¹ Scroll Ø¨Ø§Ø± Ù…Ø³ØªÙ‚Ù„ ÙˆØ®Ø§Øµ Ø¨Ù‡Ø§ -->
+                <div id="proListContainer" class="flex-1 flex flex-col gap-3 overflow-y-auto pr-1 custom-scroll">
+                    <!-- Ø§Ù„ÙƒØ±ÙˆØª ØºØ§ØªØ¹Ù…Ø± Ù‡Ù†Ø§ Ø¨Ù€ Ø§Ù„Ù€ JavaScript Ø¯ÙŠÙ†Ø§Ù…ÙŠÙƒÙŠØ§ -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Ø§Ù„Ø¬Ù‡Ø© Ø§Ù„ÙŠÙ…Ù†Ù‰: Ø§Ù„Ø¨Ø­Ø« ÙˆÙ‚Ø§Ø¦Ù…Ø© Ù…Ø¬Ø§Ù„Ø§Øª Ø§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ø·ÙˆÙŠÙ„Ø© -->
+        <section class="w-full md:w-7/12 flex flex-col gap-4">
+            <div class="relative w-full">
+                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </span>
+                <input onkeyup="searchServices(this.value)" type="text" placeholder="Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø®Ø¯Ù…Ø© ÙˆØ§Ù„Ù…Ø¬Ø§Ù„Ø§Øª..." class="w-full py-3.5 pr-11 pl-4 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-neutral-950 text-right text-sm">
+            </div>
+
+            <!-- Ø­Ø§ÙˆÙŠØ© ÙƒØ±ÙˆØª Ø§Ù„Ø®Ø¯Ù…Ø§Øª Ø¨Ù€ Ø³ÙƒØ±ÙˆÙ„ Ù…Ù†ÙØµÙ„ -->
+            <div id="servicesListContainer" class="flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-190px)] pr-1 custom-scroll">
+
+                <!-- ÙƒØ±Øª 1 -->
+                <div onclick="openDemandModal('ðŸ› ï¸ Ù…ÙŠÙƒØ§Ù†ÙŠÙƒ Ø§Ù„Ø³ÙŠØ§Ø±Ø§Øª', 'automotive')" class="service-card bg-white rounded-xl shadow-sm border border-gray-200/70 overflow-hidden hover:shadow-md transition flex flex-col sm:flex-row cursor-pointer group">
+                    <div class="w-full sm:w-40 h-28 bg-gray-100 shrink-0 overflow-hidden"><img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
+                    <div class="p-4 flex flex-col justify-center text-right w-full">
+                        <h2 class="text-base font-black text-neutral-900 mb-1">ðŸ› ï¸ Ù…ÙŠÙƒØ§Ù†ÙŠÙƒ Ø§Ù„Ø³ÙŠØ§Ø±Ø§Øª</h2>
+                        <p class="text-gray-500 text-xs leading-relaxed">ÙØ­Øµ Ø§Ù„Ø£Ø¹Ø·Ø§Ù„ ÙˆØ§Ù„Ø¥ØµÙ„Ø§Ø­ Ø§Ù„Ø´Ø§Ù…Ù„ Ù„Ù„Ù…Ø­Ø±Ùƒ ÙˆØ§Ù„ÙØ±Ø§Ù…Ù„ Ø¨Ø£Ø¹Ù„Ù‰ Ø¬ÙˆØ¯Ø©...</p>
+                    </div>
+                </div>
+
+                <!-- ÙƒØ±Øª 2 -->
+                <div onclick="openDemandModal('ðŸŽ¨ ØµØ¨Ø§ØºØ© Ø§Ù„Ù…Ù†Ø§Ø²Ù„', 'painting')" class="service-card bg-white rounded-xl shadow-sm border border-gray-200/70 overflow-hidden hover:shadow-md transition flex flex-col sm:flex-row cursor-pointer group">
+                    <div class="w-full sm:w-40 h-28 bg-gray-100 shrink-0 overflow-hidden"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
+                    <div class="p-4 flex flex-col justify-center text-right w-full">
+                        <h2 class="text-base font-black text-neutral-900 mb-1">ðŸŽ¨ ØµØ¨Ø§ØºØ© Ø§Ù„Ù…Ù†Ø§Ø²Ù„</h2>
+                        <p class="text-gray-500 text-xs leading-relaxed">ØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ø£Ù„ÙˆØ§Ù†ØŒ ØµØ¨Ø§ØºØ© Ø¯Ø§Ø®Ù„ÙŠØ© ÙˆØ®Ø§Ø±Ø¬ÙŠØ©ØŒ ÙˆØªØ±ÙƒÙŠØ¨ Ø§Ù„Ø¬Ø¨Ø³ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ©...</p>
+                    </div>
+                </div>
+
+                <!-- ÙƒØ±Øª 3 -->
+                <div onclick="openDemandModal('ðŸ’¡ ÙƒÙ‡Ø±Ø¨Ø§Ø¡ ÙˆØµÙŠØ§Ù†Ø© Ø¹Ø§Ù…Ø©', 'electric')" class="service-card bg-white rounded-xl shadow-sm border border-gray-200/70 overflow-hidden hover:shadow-md transition flex flex-col sm:flex-row cursor-pointer group">
+                    <div class="w-full sm:w-40 h-28 bg-gray-100 shrink-0 overflow-hidden"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
+                    <div class="p-4 flex flex-col justify-center text-right w-full">
+                        <h2 class="text-base font-black text-neutral-900 mb-1">ðŸ’¡ ÙƒÙ‡Ø±Ø¨Ø§Ø¡ ÙˆØµÙŠØ§Ù†Ø© Ø¹Ø§Ù…Ø©</h2>
+                        <p class="text-gray-500 text-xs leading-relaxed">ØªØ±ÙƒÙŠØ¨ ÙˆØªØµÙ„ÙŠØ­ Ø§Ù„Ø£Ù†Ø¸Ù…Ø© Ø§Ù„ÙƒÙ‡Ø±Ø¨Ø§Ø¦ÙŠØ© ÙˆØªÙˆÙÙŠØ± Ø­Ù„ÙˆÙ„ Ø¥Ø¶Ø§Ø¡Ø© Ø­Ø¯ÙŠØ«Ø© ÙˆØ¹ØµØ±ÙŠØ©...</p>
+                    </div>
+                </div>
+
+                <!-- ÙƒØ±Øª 4 -->
+                <div onclick="openDemandModal('ðŸš° Ø³Ø¨Ø§ÙƒØ© ÙˆØªØ±ØµÙŠØµ (Ø¨Ù„ÙˆÙ…Ø¨ÙŠ)', 'plumbing')" class="service-card bg-white rounded-xl shadow-sm border border-gray-200/70 overflow-hidden hover:shadow-md transition flex flex-col sm:flex-row cursor-pointer group">
+                    <div class="w-full sm:w-40 h-28 bg-gray-100 shrink-0 overflow-hidden"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
+                    <div class="p-4 flex flex-col justify-center text-right w-full">
+                        <h2 class="text-base font-black text-neutral-900 mb-1">ðŸš° Ø³Ø¨Ø§ÙƒØ© ÙˆØªØ±ØµÙŠØµ (Ø¨Ù„ÙˆÙ…Ø¨ÙŠ)</h2>
+                        <p class="text-gray-500 text-xs leading-relaxed">Ø¥ØµÙ„Ø§Ø­ ØªØ³Ø±Ø¨Ø§Øª Ø§Ù„Ù…ÙŠØ§Ù‡ ÙˆØªØ¬Ù‡ÙŠØ² ÙˆØªØ³Ø±ÙŠØ­ Ù‚Ù†ÙˆØ§Øª Ø§Ù„ØµØ±Ù Ø§Ù„ØµØ­ÙŠ Ø¨Ø¯Ù‚Ø© ÙˆØ¨Ø³Ø±Ø¹Ø©...</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= ðŸ› ï¸ POPUP MODAL: Ø´Ø§Ø´Ø© Ø§Ù„Ø³Ø¤Ø§Ù„ Ø¹Ù† Ø§Ù„Ø³Ø¹Ø± ÙˆØ§Ù„Ø¹Ù†ÙˆØ§Ù† ================= -->
+    <div id="demandModal" class="fixed inset-0 bg-neutral-950/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-xl text-right animate-in fade-in zoom-in duration-200">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
+                <h3 id="modalServiceTitle" class="text-lg font-black text-neutral-900">Ø·Ù„Ø¨ Ø§Ù„Ø®Ø¯Ù…Ø©</h3>
+                <button onclick="closeDemandModal()" class="text-gray-400 hover:text-gray-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1.5">ðŸ’° Ø§Ù„Ø³Ø¹Ø± Ø§Ù„Ù…Ù‚ØªØ±Ø­ Ø£Ùˆ Ø§Ù„Ù…ÙŠØ²Ø§Ù†ÙŠØ© (Ø¨Ø§Ù„Ø¯Ø±Ù‡Ù…):</label>
+                    <input id="modalPriceInput" type="number" placeholder="Ù…Ø«Ø§Ù„: 200" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-neutral-950 text-right">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1.5">ðŸ“ Ø¹Ù†ÙˆØ§Ù†Ùƒ Ø§Ù„Ø­Ø§Ù„ÙŠ Ø£Ùˆ Ø§Ù„Ø­ÙŠ Ø§Ù„Ø³ÙƒÙ†ÙŠ:</label>
+                    <input id="modalAddressInput" type="text" placeholder="Ù…Ø«Ø§Ù„: Ø­ÙŠ Ø§Ù„Ø±ÙŠØ§Ø¶ØŒ Ø§Ù„Ø±Ø¨Ø§Ø·" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-neutral-950 text-right">
+                </div>
+
+                <button onclick="executeProMatching()" class="w-full py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white font-bold rounded-xl text-sm shadow-md transition mt-2">
+                    ðŸ” Ø§Ø¨Ø­Ø« Ø¹Ù† Ø£Ù‚Ø±Ø¨ Ø§Ù„Ù…Ø­ØªØ±ÙÙŠÙ† Ø¨Ù‡Ø°Ø§ Ø§Ù„Ø³Ø¹Ø±
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= PAGE 2: PROFILE PAGE (Ø³ØªØ§ÙŠÙ„ Ø§Ù†Ø³ØªØºØ±Ø§Ù…) ================= -->
+    <div id="profilePage" class="page-view hidden flex-1 max-w-4xl w-full mx-auto p-4 md:p-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm">
+            <div class="flex flex-col sm:flex-row items-center gap-6 md:gap-10 border-b border-gray-100 pb-8">
+                <div class="relative group">
+                    <div class="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden ring-4 ring-gray-100">
+                        <img id="profileAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" class="w-full h-full object-cover">
+                    </div>
+                    <label class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition cursor-pointer text-xs font-bold">
+                        ØªØºÙŠÙŠØ± Ø§Ù„ØµÙˆØ±Ø© <input type="file" accept="image/*" onchange="changeProfilePicture(event)" class="hidden">
+                    </label>
+                </div>
+                <div class="text-center sm:text-right flex-1">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <h2 class="text-2xl font-black text-neutral-900">Ø³Ø§Ø±Ø© Ø§Ù„Ø¹Ù…Ø±Ø§Ù†ÙŠ</h2>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">Ø¹Ù…ÙŠÙ„ Ù…Ù…ÙŠØ² â­</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-4">sara.amrani@sevar.ma</p>
+                </div>
+            </div>
+            <!-- ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø­Ø³Ø§Ø¨ ÙˆØ§Ù„Ø¹Ù…Ù„ÙŠØ§Øª -->
+            <div class="grid grid-cols-2 gap-4 my-6 text-right">
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100"><span class="block text-xs text-gray-400">Ø§Ù„Ø§Ø³Ù…:</span><span class="text-sm font-bold">Ø³Ø§Ø±Ø©</span></div>
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100"><span class="block text-xs text-gray-400">Ø§Ù„Ù†Ø³Ø¨:</span><span class="text-sm font-bold">Ø§Ù„Ø¹Ù…Ø±Ø§Ù†ÙŠ</span></div>
+            </div>
+            <button onclick="showPage('homePage')" class="px-6 py-2.5 bg-neutral-900 text-white font-bold rounded-xl text-sm hover:bg-neutral-800 transition">Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</button>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 3: PRIVACY POLICY PAGE ================= -->
+    <div id="privacyPage" class="page-view hidden flex-1 max-w-3xl w-full mx-auto p-4 md:p-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm text-right">
+            <h2 class="text-xl font-black text-neutral-900 mb-4"><i class="fa-solid fa-lock text-amber-500"></i> Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø®ØµÙˆØµÙŠØ©</h2>
+            <p class="text-gray-600 text-sm leading-relaxed">Ù†Ø­Ù† ÙÙŠ Ù…Ù†ØµØ© SEVAR Ù†Ù‚ÙˆÙ… Ø¨Ø­Ù…Ø§ÙŠØ© Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¹Ù†Ø§ÙˆÙŠÙ† ÙˆØ§Ù„Ø£Ø³Ø¹Ø§Ø± Ø§Ù„Ù…Ù‚ØªØ±Ø­Ø© Ù„Ø¶Ù…Ø§Ù† ØªØ¬Ø±Ø¨Ø© Ø¢Ù…Ù†Ø© ÙˆÙ…ÙˆØ«ÙˆÙ‚Ø© Ø¨ÙŠÙ† Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ ÙˆØ§Ù„Ù…Ù‡Ù†ÙŠÙŠÙ† Ø¯ÙˆÙ† Ø£ÙŠ ØªØ³Ø±ÙŠØ¨ Ù„Ù„Ù…Ø¹Ù„ÙˆÙ…Ø§Øª.</p>
+            <button onclick="showPage('homePage')" class="mt-6 px-6 py-2.5 bg-neutral-900 text-white font-bold rounded-xl text-sm transition">Ù…ÙˆØ§ÙÙ‚</button>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 4: HELP & FEEDBACK PAGE ================= -->
+    <div id="helpPage" class="page-view hidden flex-1 max-w-3xl w-full mx-auto p-4 md:p-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm text-right">
+            <h2 class="text-xl font-black text-neutral-900 mb-2">Ù…Ø±ÙƒØ² Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø© ÙˆØ§Ù„Ù†ØµØ§Ø¦Ø­</h2>
+            <textarea id="feedbackText" rows="4" placeholder="Ø§ÙƒØªØ¨ Ø§Ù‚ØªØ±Ø§Ø­Ùƒ Ù‡Ù†Ø§ Ø¨ÙƒÙ„ ØµØ¯Ø± Ø±Ø­Ø¨..." class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm outline-none mt-3"></textarea>
+            <button onclick="alert('Ø´ÙƒØ±Ø§Ù‹ Ø¹Ù„Ù‰ Ù…Ø³Ø§Ù‡Ù…ØªÙƒ Ø§Ù„Ù‚ÙŠÙ…Ø©!'); showPage('homePage')" class="mt-4 w-full py-3 bg-neutral-900 text-white font-bold rounded-xl text-sm transition">Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ù…Ù„Ø§Ø­Ø¸Ø©</button>
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='js/api.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buyer.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVAR - Ø§Ù„ØªØ³Ø¬ÙŠÙ„</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_phone.css') }}">
+</head>
+<body>
+
+<div class="auth-card">
+    <!-- Ù†Ø¸Ø§Ù… Ø§Ù„ØªÙ†Ù‚Ù‘Ù„ Ø§Ù„Ø¹Ù„ÙˆÙŠ Ø§Ù„Ù…ÙˆØ­Ø¯ -->
+    <div class="card-header-navigation">
+        <!-- Ø³Ù‡Ù… Ø§Ù„ÙŠÙ…ÙŠÙ† (Ø§Ù„ØªØ§Ù„ÙŠ) -->
+        <button class="nav-arrow" id="nav-next-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                 stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+            </svg>
+        </button>
+
+        <!-- Ø´Ø±ÙŠØ· Ø§Ù„ØªÙ‚Ø¯Ù… -->
+        <div class="step-progress-bar">
+            <div class="progress-fill" id="main-progress"></div>
+        </div>
+
+        <!-- Ø³Ù‡Ù… Ø§Ù„ÙŠØ³Ø§Ø± (Ø§Ù„Ø³Ø§Ø¨Ù‚) -->
+        <button class="nav-arrow" id="nav-prev-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                 stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- =================== Ø§Ù„Ø®Ø·ÙˆØ© 1: Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ =================== -->
+    <div class="form-step step-active" id="step-1">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Phone Verification" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø¯Ø®Ù„ Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ</h1>
+            <div class="input-group">
+                <input type="tel" id="phone-input" placeholder="+212 600-000000" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ø§Ù„Ø®Ø·ÙˆØ© 2: ÙƒÙˆØ¯ Ø§Ù„ØªØ­Ù‚Ù‚ OTP =================== -->
+    <div class="form-step" id="step-2">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/otp_illustration.jpg') }}" alt="Verification Code" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">ÙƒÙˆØ¯ Ø§Ù„ØªØ­Ù‚Ù‚</h1>
+            <div class="otp-container">
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-verify action-next">ØªØ­Ù‚Ù‚</button>
+                <button class="btn btn-resend">Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ø¥Ø±Ø³Ø§Ù„</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ø§Ù„Ø®Ø·ÙˆØ© 3: Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„ =================== -->
+    <div class="form-step" id="step-3">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Profile Creation" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø¯Ø®Ù„ Ø§Ù„Ø¥Ø³Ù…</h1>
+            <div class="input-group">
+                <input type="text" id="name-input" placeholder="Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ø§Ù„Ø®Ø·ÙˆØ© 4: Ø§Ø®ØªÙŠØ§Ø± Ù†ÙˆØ¹ Ø§Ù„Ø­Ø³Ø§Ø¨ (Ù…Ø´ØªØ±ÙŠ / Ø¨Ø§Ø¦Ø¹) =================== -->
+    <div class="form-step" id="step-4">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="User Type" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø´Ù†Ùˆ Ù‡Ùˆ Ø§Ù„Ø¯ÙˆØ± Ø¯ÙŠØ§Ù„ÙƒØŸ</h1>
+            <div class="role-selection-container">
+                <label class="role-option">
+                    <input type="radio" name="user-role" value="buyer" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">Ø¨Ø§ØºÙŠ Ù†Ø´Ø±ÙŠ Ø®Ø¯Ù…Ø© (Ù…Ø´ØªØ±ÙŠ)</span>
+                    </div>
+                </label>
+                <label class="role-option">
+                    <input type="radio" name="user-role" value="seller" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">Ø¨Ø§ØºÙŠ Ù†Ø¨ÙŠØ¹ Ø®Ø¯Ù…Ø© (Ø¨Ø§Ø¦Ø¹)</span>
+                    </div>
+                </label>
+            </div>
+            <p class="partner-text" style="margin-top: 20px;">Next level Partners</p>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ù…Ø´ØªØ±ÙŠ - Ø§Ù„Ø®Ø·ÙˆØ© 5A: Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø¬ØºØ±Ø§ÙÙŠ =================== -->
+    <div class="form-step" id="step-5A">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Location" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø´Ø­Ø§Ù„ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø¯ÙŠØ§Ù„ÙƒØŸ</h1>
+            <div class="input-group">
+                <input type="text" id="location-input" placeholder="Ù…Ø«Ù„Ø§Ù‹: Ø§Ù„Ø¯Ø§Ø± Ø§Ù„Ø¨ÙŠØ¶Ø§Ø¡ØŒ Ø§Ù„Ù…Ø¹Ø§Ø±ÙŠÙ" class="custom-input"
+                       required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ù…Ø´ØªØ±ÙŠ - Ø§Ù„Ø®Ø·ÙˆØ© Ø§Ù„ÙØ§ØµÙ„Ø©: ØªØ±Ø­ÙŠØ¨ Ø§Ù„Ù…Ø´ØªØ±ÙŠ =================== -->
+    <div class="form-step" id="step-welcome-buyer">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/good-look.jpg') }}" alt="Welcome Buyer" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline welcome-message-text">Ù…Ø±Ø­Ø¨Ø§Ù‹ Ø¨Ùƒ!</h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 32px;">
+                Ù…Ø±Ø­Ø¨Ø§ Ø¨Ùƒ Ù…Ø¹Ø§Ù†Ø§ ÙÙŠ Ø§Ù„Ø¹Ø§Ø¦Ù„Ø©! Ø§Ù„Ø­Ø³Ø§Ø¨ Ø¯ÙŠØ§Ù„Ùƒ ÙˆØ§Ø¬Ø¯ Ø¯Ø§Ø¨Ø§ ÙƒÙ…Ø´ØªØ±ÙŠ. ØºØ§Ø¯ÙŠ Ù†Ù…Ø´ÙŠÙˆ Ù†ÙŠØ´Ø§Ù† Ø¨Ø§Ø´ ØªØ´ÙˆÙ Ø§Ù„Ù…Ù†ØµØ© ÙˆØªÙƒØªØ´Ù
+                Ø§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ù‚Ø±ÙŠØ¨Ø© Ù…Ù†Ùƒ.
+            </p>
+            <div class="button-group">
+                <button class="btn btn-submit-form id-final-submit">ÙØ¹Ù„ Ø§Ù„Ø­Ø³Ø§Ø¨ Ø¯ÙŠØ§Ù„Ùƒ</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© 5B: ØªØ§Ø±ÙŠØ® Ø§Ù„Ø§Ø²Ø¯ÙŠØ§Ø¯ =================== -->
+    <div class="form-step" id="step-5B">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Birthdate" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">ØªØ§Ø±ÙŠØ® Ø§Ù„Ø§Ø²Ø¯ÙŠØ§Ø¯ Ø¯ÙŠØ§Ù„Ùƒ</h1>
+            <div class="input-group">
+                <input type="date" id="birthdate-input" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© 6B: Ø±Ù‚Ù… Ø§Ù„Ø¨Ø·Ø§Ù‚Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ© =================== -->
+    <div class="form-step" id="step-6B">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="ID Card" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø±Ù‚Ù… Ø§Ù„Ø¨Ø·Ø§Ù‚Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ©</h1>
+            <div class="input-group">
+                <input type="text" id="cin-input" placeholder="Ù…Ø«Ù„Ø§Ù‹: AB123456" class="custom-input" required>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="form-step" id="step-cin-upload">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="ID Upload" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">ØµÙˆØ± Ø§Ù„Ø¨Ø·Ø§Ù‚Ø© Ø§Ù„ÙˆØ·Ù†ÙŠØ©</h1>
+            <p style="font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5;">
+                ÙŠØ±Ø¬Ù‰ ØªØµÙˆÙŠØ± Ø£Ùˆ Ø±ÙØ¹ ÙˆØ§Ø¬Ù‡Ø© ÙˆØ®Ù„ÙÙŠØ© Ø§Ù„Ø¨Ø·Ø§Ù‚Ø© Ø¨Ù†Ø³Ø®Ø© ÙˆØ§Ø¶Ø­Ø© Ø¬Ø¯Ø§Ù‹ Ù„Ù†ØªÙ…ÙƒÙ† Ù…Ù† Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª ØªÙ„Ù‚Ø§Ø¦ÙŠØ§Ù‹.
+            </p>
+
+            <div class="cin-upload-container">
+                <div class="cin-box" id="cin-front-box" onclick="triggerCinUpload('front')">
+                    <div class="cin-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/>
+                        </svg>
+                    </div>
+                    <span class="cin-text" id="text-front">Ø§Ù„Ø¬Ù‡Ø© Ø§Ù„Ø£Ù…Ø§Ù…ÙŠØ© Ù„Ù„Ø¨Ø·Ø§Ù‚Ø©</span>
+                    <input type="file" id="input-cin-front" accept="image/*" style="display: none;"
+                           onchange="previewCinImage(this, 'front')">
+                </div>
+
+                <div class="cin-box" id="cin-back-box" onclick="triggerCinUpload('back')">
+                    <div class="cin-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/>
+                        </svg>
+                    </div>
+                    <span class="cin-text" id="text-back">Ø§Ù„Ø¬Ù‡Ø© Ø§Ù„Ø®Ù„ÙÙŠØ© Ù„Ù„Ø¨Ø·Ø§Ù‚Ø©</span>
+                    <input type="file" id="input-cin-back" accept="image/*" style="display: none;"
+                           onchange="previewCinImage(this, 'back')">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© 7B: Ø§Ù„Ø¬Ù†Ø³ (Ø°ÙƒØ± / Ø£Ù†Ø«Ù‰) =================== -->
+    <div class="form-step" id="step-7B">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Gender" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø§Ù„Ø¬Ù†Ø³</h1>
+            <div class="role-selection-container">
+                <label class="role-option">
+                    <input type="radio" name="gender" value="male" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">Ø°ÙƒØ±</span>
+                    </div>
+                </label>
+                <label class="role-option">
+                    <input type="radio" name="gender" value="female" class="role-radio auto-submit-radio">
+                    <div class="role-box">
+                        <span class="role-title">Ø£Ù†Ø«Ù‰</span>
+                    </div>
+                </label>
+            </div>
+            <p class="partner-text" style="margin-top: 20px;">Next level Partners</p>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© 8B: Ø§Ù„Ø¬Ù†Ø³ÙŠØ© =================== -->
+    <div class="form-step" id="step-8B">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Citizenship" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø§Ù„Ø¬Ù†Ø³ÙŠØ© Ø¯ÙŠØ§Ù„Ùƒ</h1>
+            <div class="input-group">
+                <select id="country-select" class="custom-input" required>
+                    <option value="" disabled selected>Ø§Ø®ØªØ± Ø¨Ù„Ø¯Ùƒ Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©</option>
+                    <option value="AF">Ø£ÙØºØ§Ù†Ø³ØªØ§Ù† (Afghanistan)</option>
+                    <option value="AL">Ø£Ù„Ø¨Ø§Ù†ÙŠØ§ (Albania)</option>
+                    <option value="DZ">Ø§Ù„Ø¬Ø²Ø§Ø¦Ø± (Algeria)</option>
+                    <option value="AD">Ø£Ù†Ø¯ÙˆØ±Ø§ (Andorra)</option>
+                    <option value="AO">Ø£Ù†ØºÙˆÙ„Ø§ (Angola)</option>
+                    <option value="AR">Ø§Ù„Ø£Ø±Ø¬Ù†ØªÙŠÙ† (Argentina)</option>
+                    <option value="AM">Ø£Ø±Ù…ÙŠÙ†ÙŠØ§ (Armenia)</option>
+                    <option value="AU">Ø£Ø³ØªØ±Ø§Ù„ÙŠØ§ (Australia)</option>
+                    <option value="AT">Ø§Ù„Ù†Ù…Ø³Ø§ (Austria)</option>
+                    <option value="AZ">Ø£Ø°Ø±Ø¨ÙŠØ¬Ø§Ù† (Azerbaijan)</option>
+                    <option value="BH">Ø§Ù„Ø¨Ø­Ø±ÙŠÙ† (Bahrain)</option>
+                    <option value="BD">Ø¨ØºÙ„Ø§Ø¯ÙŠØ´ (Bangladesh)</option>
+                    <option value="BE">Ø¨Ù„Ø¬ÙŠÙƒØ§ (Belgium)</option>
+                    <option value="BR">Ø§Ù„Ø¨Ø±Ø§Ø²ÙŠÙ„ (Brazil)</option>
+                    <option value="CA">ÙƒÙ†Ø¯Ø§ (Canada)</option>
+                    <option value="CL">Ø´ÙŠÙ„ÙŠ (Chile)</option>
+                    <option value="CN">Ø§Ù„ØµÙŠÙ† (China)</option>
+                    <option value="CO">ÙƒÙˆÙ„ÙˆÙ…Ø¨ÙŠØ§ (Colombia)</option>
+                    <option value="HR">ÙƒØ±ÙˆØ§ØªÙŠØ§ (Croatia)</option>
+                    <option value="CU">ÙƒÙˆØ¨Ø§ (Cuba)</option>
+                    <option value="CY">Ù‚Ø¨Ø±Øµ (Cyprus)</option>
+                    <option value="DK">Ø§Ù„Ø¯Ø§Ù†Ù…Ø§Ø±Ùƒ (Denmark)</option>
+                    <option value="DJ">Ø¬ÙŠØ¨ÙˆØªÙŠ (Djibouti)</option>
+                    <option value="EG">Ù…ØµØ± (Egypt)</option>
+                    <option value="FI">ÙÙ†Ù„Ù†Ø¯Ø§ (Finland)</option>
+                    <option value="FR">ÙØ±Ù†Ø³Ø§ (France)</option>
+                    <option value="DE">Ø£Ù„Ù…Ø§Ù†ÙŠØ§ (Germany)</option>
+                    <option value="GR">Ø§Ù„ÙŠÙˆÙ†Ø§Ù† (Greece)</option>
+                    <option value="IN">Ø§Ù„Ù‡Ù†Ø¯ (India)</option>
+                    <option value="ID">Ø¥Ù†Ø¯ÙˆÙ†ÙŠØ³ÙŠØ§ (Indonesia)</option>
+                    <option value="IQ">Ø§Ù„Ø¹Ø±Ø§Ù‚ (Iraq)</option>
+                    <option value="IE">Ø£ÙŠØ±Ù„Ù†Ø¯Ø§ (Ireland)</option>
+                    <option value="IT">Ø¥ÙŠØ·Ø§Ù„ÙŠØ§ (Italy)</option>
+                    <option value="JP">Ø§Ù„ÙŠØ§Ø¨Ø§Ù† (Japan)</option>
+                    <option value="JO">Ø§Ù„Ø£Ø±Ø¯Ù† (Jordan)</option>
+                    <option value="KW">Ø§Ù„ÙƒÙˆÙŠØª (Kuwait)</option>
+                    <option value="LB">Ù„Ø¨Ù†Ø§Ù† (Lebanon)</option>
+                    <option value="LY">Ù„ÙŠØ¨ÙŠØ§ (Libya)</option>
+                    <option value="MA">Ø§Ù„Ù…ØºØ±Ø¨ (Morocco)</option>
+                    <option value="MX">Ø§Ù„Ù…ÙƒØ³ÙŠÙƒ (Mexico)</option>
+                    <option value="NL">Ù‡ÙˆÙ„Ù†Ø¯Ø§ (Netherlands)</option>
+                    <option value="NZ">Ù†ÙŠÙˆØ²ÙŠÙ„Ù†Ø¯Ø§ (New Zealand)</option>
+                    <option value="NO">Ø§Ù„Ù†Ø±ÙˆÙŠØ¬ (Norway)</option>
+                    <option value="OM">Ø¹Ù…Ø§Ù† (Oman)</option>
+                    <option value="PK">Ø¨Ø§ÙƒØ³ØªØ§Ù† (Pakistan)</option>
+                    <option value="PS">ÙÙ„Ø³Ø·ÙŠÙ† (Palestine)</option>
+                    <option value="PT">Ø§Ù„Ø¨Ø±ØªØºØ§Ù„ (Portugal)</option>
+                    <option value="QA">Ù‚Ø·Ø± (Qatar)</option>
+                    <option value="RU">Ø±ÙˆØ³ÙŠØ§ (Russia)</option>
+                    <option value="SA">Ø§Ù„Ù…Ù…Ù„ÙƒØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ© Ø§Ù„Ø³Ø¹ÙˆØ¯ÙŠØ© (Saudi Arabia)</option>
+                    <option value="SEN">Ø§Ù„Ø³Ù†ØºØ§Ù„ (Senegal)</option>
+                    <option value="ZA">Ø¬Ù†ÙˆØ¨ Ø£ÙØ±ÙŠÙ‚ÙŠØ§ (South Africa)</option>
+                    <option value="ES">Ø¥Ø³Ø¨Ø§Ù†ÙŠØ§ (Spain)</option>
+                    <option value="SD">Ø§Ù„Ø³ÙˆØ¯Ø§Ù† (Sudan)</option>
+                    <option value="SE">Ø§Ù„Ø³ÙˆÙŠØ¯ (Sweden)</option>
+                    <option value="CH">Ø³ÙˆÙŠØ³Ø±Ø§ (Switzerland)</option>
+                    <option value="SY">Ø³ÙˆØ±ÙŠØ§ (Syria)</option>
+                    <option value="TN">ØªÙˆÙ†Ø³ (Tunisia)</option>
+                    <option value="TR">ØªØ±ÙƒÙŠØ§ (Turkey)</option>
+                    <option value="AE">Ø§Ù„Ø¥Ù…Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ø±Ø¨ÙŠØ© Ø§Ù„Ù…ØªØ­Ø¯Ø© (UAE)</option>
+                    <option value="GB">Ø§Ù„Ù…Ù…Ù„ÙƒØ© Ø§Ù„Ù…ØªØ­Ø¯Ø© (UK)</option>
+                    <option value="US">Ø§Ù„ÙˆÙ„Ø§ÙŠØ§Øª Ø§Ù„Ù…ØªØ­Ø¯Ø© Ø§Ù„Ø£Ù…Ø±ÙŠÙƒÙŠØ© (USA)</option>
+                    <option value="YE">Ø§Ù„ÙŠÙ…Ù† (Yemen)</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© 9B: Ø³Ù†ÙˆØ§Øª Ø§Ù„Ø®Ø¨Ø±Ø© ÙˆÙˆØµÙ Ø§Ù„Ø®Ø¯Ù…Ø© (Ù…Ø¬Ù…ÙˆØ¹ÙŠÙ†) =================== -->
+    <div class="form-step" id="step-9B">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Experience and Description" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø§Ù„Ø®Ø¨Ø±Ø© ÙˆØ§Ù„Ø®Ø¯Ù…Ø©</h1>
+            <div class="input-group" style="margin-bottom: 16px;">
+                <input type="number" id="experience-input" placeholder="Ø¹Ø¯Ø¯ Ø³Ù†ÙˆØ§Øª Ø§Ù„Ø®Ø¨Ø±Ø© (Ù…Ø«Ø§Ù„: 3)" class="custom-input"
+                       min="0" required>
+            </div>
+            <div class="input-group">
+                <textarea id="description-input" placeholder="Ø§ÙƒØªØ¨ ÙˆØµÙØ§Ù‹ Ù…Ø®ØªØµØ±Ø§Ù‹ Ù„Ù„Ø®Ø¯Ù…Ø© Ø§Ù„Ù„ÙŠ ÙƒØªÙ‚Ø¯Ù…Ù‡Ø§..."
+                          class="custom-input" style="height: 100px; padding: 12px 16px; resize: none;"
+                          required></textarea>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© 10B: Ø§Ù„Ù„ØºØ§Øª =================== -->
+    <div class="form-step" id="step-10B">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/typing_info.jpg') }}" alt="Languages" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline">Ø§Ù„Ù„ØºØ§Øª Ø§Ù„Ù„ÙŠ ÙƒØªÙ‡Ø¶Ø± Ø¨ÙŠÙ‡Ø§</h1>
+            <div class="input-group">
+                <select id="language-select" class="custom-input" required>
+                    <option value="" disabled selected>Ø§Ø®ØªØ± Ø§Ù„Ù„ØºØ© Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ©</option>
+                    <option value="AR">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ© (Arabic)</option>
+                    <option value="BER">Ø§Ù„Ø£Ù…Ø§Ø²ÙŠØºÙŠØ© (Berber)</option>
+                    <option value="FR">Ø§Ù„ÙØ±Ù†Ø³ÙŠØ© (French)</option>
+                    <option value="EN">Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© (English)</option>
+                    <option value="ES">Ø§Ù„Ø¥Ø³Ø¨Ø§Ù†ÙŠØ© (Spanish)</option>
+                    <option value="DE">Ø§Ù„Ø£Ù„Ù…Ø§Ù†ÙŠØ© (German)</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-next action-next">Ø§Ù„ØªØ§Ù„ÙŠ</button>
+                <button class="btn btn-exit">Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================== Ù…Ø³Ø§Ø± Ø§Ù„Ø¨Ø§Ø¦Ø¹ - Ø§Ù„Ø®Ø·ÙˆØ© Ø§Ù„ÙØ§ØµÙ„Ø© ÙˆØ§Ù„Ø£Ø®ÙŠØ±Ø©: ØªØ±Ø­ÙŠØ¨ Ø§Ù„Ø¨Ø§Ø¦Ø¹ =================== -->
+    <div class="form-step" id="step-welcome-seller">
+        <div class="hero-container">
+            <img src="{{ url_for('static', filename='images/good-look.jpg') }}" alt="Welcome Seller" class="hero-img">
+        </div>
+        <main>
+            <h1 class="main-headline welcome-message-text">Ù…Ø±Ø­Ø¨Ø§Ù‹ Ø¨Ùƒ!</h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 32px;">
+                Ù…Ø±Ø­Ø¨Ø§ Ø¨Ùƒ Ù…Ø¹Ø§Ù†Ø§ ÙÙŠ Ø§Ù„Ø¹Ø§Ø¦Ù„Ø©! Ø§Ù„Ø­Ø³Ø§Ø¨ Ø¯ÙŠØ§Ù„Ùƒ ÙƒØ¨Ø§Ø¦Ø¹ ÙˆØ§Ø¬Ø¯ Ø¯Ø§Ø¨Ø§. ØºØ§Ø¯ÙŠ Ù†Ù…Ø´ÙŠÙˆ Ù†ÙŠØ´Ø§Ù† Ù„Ù„Ù…Ù†ØµØ© Ø¨Ø§Ø´ ØªØ¨Ø¯Ø§ ØªÙ‚Ø¯Ù… Ø§Ù„Ø®Ø¯Ù…Ø§Øª
+                Ø¯ÙŠØ§Ù„Ùƒ ÙˆØªØ³ØªÙ‚Ø¨Ù„ Ø§Ù„Ø·Ù„Ø¨Ø§Øª.
+            </p>
+            <div class="button-group">
+                <button class="btn btn-submit-form id-final-submit">ÙØ¹Ù„ Ø§Ù„Ø­Ø³Ø§Ø¨ Ø¯ÙŠØ§Ù„Ùƒ</button>
+                <p class="partner-text">Next level Partners</p>
+            </div>
+        </main>
+    </div>
+
+</div>
+<script src="{{ url_for('static', filename='js/api.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+<script src="{{ url_for('static', filename='js/onboarding.js') }}"></script>
+</body>
+
+</html>
+
