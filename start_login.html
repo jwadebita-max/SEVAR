@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 </head>
@@ -30,25 +29,14 @@
         </p>
 
         <div class="button-group">
-            <button id="google-btn" class="btn btn-google">
-                <span class="btn-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
-                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                        <path fill="#4285F4" d="M46.5 24c0-1.61-.15-3.16-.42-4.69H24v8.87h12.66c-.54 2.94-2.2 5.43-4.69 7.1 l7.3 5.66c4.27-3.93 6.73-9.71 6.73-16.94z"/>
-                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.3-5.66c-2.11 1.41-4.81 2.25-7.59 2.25-6.26 0-11.57-4.22-13.46-10.1l-7.97 6.19C6.51 42.62 14.62 48 24 48z"/>
-                    </svg>
-                </span>
-                متابعة باستخدام Google
-            </button>
 
             <a href="phone_input.html" style="text-decoration: none; display: inline-block; width: 100%;">
                 <button id="phone-btn" class="btn btn-phone">
-                <span class="btn-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="100%" height="100%">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/>
-                    </svg>
-                </span>
+                    <span class="btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="100%" height="100%">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/>
+                        </svg>
+                    </span>
                     متابعة باستخدام الهاتف
                 </button>
             </a>
@@ -57,57 +45,5 @@
     </main>
 </div>
 
-<script>
-    // 2. إعدادات جافاسكريبت لـ Firebase (Config لي عطيتيني قبيلة)
-    const firebaseConfig = {
-        apiKey: "AIzaSyACgtVmRhuhnVB4Dtoydp1hhjtHTQPRnJ4",
-        authDomain: "sevar-b9d17.firebaseapp.com",
-        projectId: "sevar-b9d17",
-        storageBucket: "sevar-b9d17.firebasestorage.app",
-        messagingSenderId: "223893575729",
-        appId: "1:223893575729:web:c3e958ea6f27ab56e61d10",
-        measurementId: "G-HK787SZ455"
-    };
-
-    // تهيئة Firebase في المتصفح
-    firebase.initializeApp(firebaseConfig);
-
-    // 3. التحكم في بوطونة تسجيل الدخول بـ Google
-    document.getElementById('google-btn').addEventListener('click', () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        // فتح نافذة Google المنبثقة للتسجيل
-        firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                // النجاح في المتصفح -> استخراج الـ ID Token
-                return result.user.getIdToken();
-            })
-            .then((idToken) => {
-                // 4. إرسال الـ Token لـ سيرفر Flask البايثون
-                return fetch('http://127.0.0.1:5000/api/auth/google', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ idToken: idToken })
-                });
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert('تم تسجيل الدخول والتحقق بنجاح ف الـ Backend! 🎉');
-                    console.log('بيانات المستخدم من السيرفر:', data.user);
-                    // هنا تقدر توجه المستخدم للصفحة الرئيسية ديال الموقع ديالك، مثلاً:
-                    // window.location.href = "home.html";
-                } else {
-                    alert('خطأ من السيرفر: ' + data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('حدث خطأ أثناء التسجيل:', error);
-                alert('فشل تسجيل الدخول: ' + error.message);
-            });
-    });
-</script>
 </body>
 </html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVAR PRO - لوحة تحكم وتعديل بروفايل المهني</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;950&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; user-select: none; }
+        .custom-scroll::-webkit-sc;rollbar { width: 5px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+    <!-- 1. NAVIGATION BAR (الهيدر مع زر تعديل البروفايل) -->
+    <nav class="bg-neutral-900 text-white px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <span onclick="showPage('dashboardPage')" class="text-2xl font-black tracking-wider cursor-pointer">SEVAR <span class="text-amber-400 text-sm font-bold tracking-normal bg-neutral-800 px-2 py-0.5 rounded-md">PRO</span></span>
+        </div>
+
+        <!-- زر تحديد الحالة: متصل أو غير متصل -->
+        <div class="flex items-center gap-2 bg-neutral-800 px-3 py-1.5 rounded-full border border-neutral-700">
+            <span id="statusDot" class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+            <span id="statusText" class="text-xs font-bold text-gray-200">مستعد للطلبات</span>
+            <input type="checkbox" id="statusToggle" checked onchange="toggleProStatus(this)" class="sr-only peer">
+            <label for="statusToggle" class="w-7 h-4 bg-gray-600 peer-focus:outline-none rounded-full relative cursor-pointer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-green-500 mr-1"></label>
+        </div>
+
+        <!-- زر البروفايل (يكليكي عليه يدوز لتعديل الحساب) -->
+        <button onclick="showPage('editProfilePage')" class="flex items-center gap-2 hover:bg-neutral-800 p-1.5 rounded-xl transition">
+            <div class="w-8 h-8 rounded-full border border-amber-400 overflow-hidden">
+                <img id="navAvatar" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100" class="w-full h-full object-cover">
+            </div>
+            <i class="fa-solid fa-gear text-xs text-gray-400"></i>
+        </button>
+    </nav>
+
+
+    <!-- ================= 1️⃣ PAGE: DASHBOARD (الرئيسية ديال الحرفي) ================= -->
+    <main id="dashboardPage" class="page-view flex-1 max-w-7xl w-full mx-auto p-4 flex flex-col gap-6">
+
+        <!-- الإحصائيات -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between text-right">
+                <div>
+                    <span class="text-xs font-bold text-gray-400 block mb-1">مدخولك هذا الشهر</span>
+                    <strong class="text-xl font-black text-neutral-900">3,450 <span class="text-xs font-bold text-gray-500">درهم</span></strong>
+                </div>
+                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-xl"><i class="fa-solid fa-wallet"></i></div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between text-right">
+                <div>
+                    <span class="text-xs font-bold text-gray-400 block mb-1">طلبات تم قبولها</span>
+                    <strong class="text-xl font-black text-neutral-900">12 <span class="text-xs font-bold text-gray-500">طلب</span></strong>
+                </div>
+                <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-xl"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between text-right">
+                <div>
+                    <span class="text-xs font-bold text-gray-400 block mb-1">تقييم الزبناء ليك</span>
+                    <strong class="text-xl font-black text-neutral-900">4.9 <span class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i></span></strong>
+                </div>
+                <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl"><i class="fa-solid fa-star-half-stroke"></i></div>
+            </div>
+        </section>
+
+        <!-- الطلبات والخدمات -->
+        <div class="flex flex-col md:flex-row gap-6 flex-1">
+            <!-- الطلبات المباشرة بـ سكرول بار مستقل -->
+            <section class="w-full md:w-7/12 bg-white border border-gray-200 rounded-2xl p-5 flex flex-col shadow-sm h-[500px] md:h-[calc(100vh-250px)]">
+                <div class="border-b border-gray-100 pb-3 mb-3 text-right">
+                    <h3 class="text-base font-black text-neutral-900 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+                        ⚡ طلبات الزبناء المباشرة الآن
+                    </h3>
+                    <p class="text-xs text-gray-400 mt-0.5">طلبات متوافقة مع تخصصك وموقعك</p>
+                </div>
+
+                <div id="liveDemandsContainer" class="flex-1 flex flex-col gap-3 overflow-y-auto pr-1 custom-scroll">
+                    <!-- طلب 1 -->
+                    <div class="bg-gray-50 border border-gray-200/80 p-4 rounded-xl flex flex-col gap-3 text-right hover:border-neutral-900 transition">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span id="cardCategory" class="px-2 py-0.5 bg-neutral-900 text-white text-[10px] font-black rounded-md ml-2">🛠️ ميكانيك السيارات</span>
+                                <strong class="text-sm font-black text-neutral-900">سارة العمراني</strong>
+                            </div>
+                            <span class="text-xs font-black text-green-600 bg-green-50 px-2.5 py-1 rounded-lg">250 درهم</span>
+                        </div>
+                        <p class="text-xs text-gray-500 leading-relaxed bg-white p-2.5 rounded-lg border border-gray-100">
+                            "عندي مشكل فالفرافر ديال الموتور كيسخنو بزاف وطوموبيل بوجو 208 واقفة ليا دابا فالحي."
+                        </p>
+                        <div class="flex justify-between items-center text-[11px] text-gray-400 mt-1">
+                            <span>📍 الموقع: حي الرياض (على بعد 1.2 كلم)</span>
+                            <button onclick="acceptClientDemand('سارة العمراني', '250', '212600000000')" class="px-4 py-2 bg-neutral-900 text-white font-bold rounded-lg text-xs transition shadow-sm">قبول والاتصال 📞</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- التخصصات الحالية -->
+            <section class="w-full md:w-5/12 flex flex-col gap-4 text-right">
+                <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                    <h3 class="text-base font-black text-neutral-900 mb-1"><i class="fa-solid fa-user-check text-gray-400"></i> بطاقة هويتك المهنية</h3>
+                    <p class="text-xs text-gray-400 mb-4">المعلومات التي تظهر للزبون عند البحث</p>
+
+                    <div class="space-y-2 text-sm bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <div><span class="text-xs text-gray-400 block">الإسم الكامل:</span> <strong id="lblProfileName">المعلم رشيد</strong></div>
+                        <div class="pt-2 border-t border-gray-200/60"><span class="text-xs text-gray-400 block">المدينة / النطاق:</span> <strong id="lblProfileCity">الرباط</strong></div>
+                        <div class="pt-2 border-t border-gray-200/60"><span class="text-xs text-gray-400 block">الحِرفة الأساسية:</span> <strong id="lblProfileService">🛠️ ميكانيك السيارات</strong></div>
+                    </div>
+
+                    <button onclick="showPage('editProfilePage')" class="w-full mt-4 py-3 bg-neutral-950 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-user-pen"></i> تعديل بيانات البروفايل بالكامل
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <!-- ================= 2️⃣ PAGE: EDIT PROFILE (بلاصة فين يـقاد البروفايل ديالو) ================= -->
+    <section id="editProfilePage" class="page-view hidden flex-1 max-w-2xl w-full mx-auto p-4 md:p-8 text-right animate-in fade-in duration-200">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
+
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
+                <div>
+                    <h2 class="text-lg font-black text-neutral-900">🛠️ إعدادات البروفايل المهني</h2>
+                    <p class="text-xs text-gray-400 mt-0.5">حدث معلوماتك لزيادة نسبة قبول طلباتك من طرف الزبناء</p>
+                </div>
+                <button onclick="showPage('dashboardPage')" class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition">خروج</button>
+            </div>
+
+            <!-- رفع وتغيير صورة البروفايل -->
+            <div class="flex flex-col items-center justify-center gap-3 bg-gray-50 p-4 rounded-2xl border border-gray-150 mb-6">
+                <div class="relative group">
+                    <div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-amber-400/45">
+                        <img id="profileAvatarImg" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200" class="w-full h-full object-cover">
+                    </div>
+                    <label class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition cursor-pointer text-[10px] font-bold">
+                        تغيير الصورة <input type="file" accept="image/*" onchange="updateProfilePhoto(event)" class="hidden">
+                    </label>
+                </div>
+                <span class="text-xs text-gray-400">إختر صورة شخصية واضحة أو لوغو الورشة</span>
+            </div>
+
+            <!-- استمارة إدخال البيانات -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1.5">👤 الإسم المهني (أو إسم الورشة):</label>
+                    <input id="txtFormName" type="text" value="المعلم رشيد" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-neutral-950 text-right">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1.5">📞 رقم هاتف الواتساب النشط:</label>
+                    <input id="txtFormPhone" type="text" value="212600000000" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-neutral-950 text-left" dir="ltr">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1.5">📍 المدينة أو نطاق العمل الحالي:</label>
+                    <input id="txtFormCity" type="text" value="الرباط، سلا" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-neutral-950 text-right">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1.5">🛠️ الحرفة / المجال الرئيسي:</label>
+                    <select id="selFormService" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-neutral-950 text-right">
+                        <option value="🛠️ ميكانيك السيارات">🛠️ ميكانيك السيارات</option>
+                        <option value="🎨 صباغة المنازل">🎨 صباغة المنازل</option>
+                        <option value="💡 كهرباء وصيانة عامة">💡 كهرباء وصيانة عامة</option>
+                        <option value="🚰 سباكة وترصيص (بلومبي)">🚰 سباكة وترصيص (بلومبي)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- أزرار الحفظ -->
+            <div class="flex gap-3 mt-6 pt-4 border-t border-gray-100">
+                <button onclick="saveProfileChanges()" class="flex-1 py-3 bg-neutral-900 hover:bg-neutral-800 text-white text-sm font-bold rounded-xl shadow-md transition">
+                    💾 حفظ التغييرات الآن
+                </button>
+                <button onclick="showPage('dashboardPage')" class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold rounded-xl transition">
+                    إلغاء
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>

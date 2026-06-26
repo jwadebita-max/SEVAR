@@ -1,0 +1,336 @@
+/* ---- الإعدادات العامة والبساطة والـ White Space ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    color: #0f172a;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* الـ Header الكامل المقتبس من ألوان صورة 5305cd572f4b20b754cda36e7dffa06f.jpg */
+.main-header {
+    height: 75px;
+    background-color: #1a1c23; /* لون غامق للموجة */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    position: relative;
+    z-index: 100;
+}
+
+.header-right, .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* العناصر السائلة داخل الهيدر */
+.nav-item-liquid {
+    height: 60px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.4s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.profile-avatar-btn, .menu-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    transition: transform 0.4s ease;
+}
+
+/* رفع الأيقونة أو النص عندما تصبح الموجة تحتهم */
+.nav-item-liquid.active {
+    color: #ffffff;
+}
+.nav-item-liquid.active svg, .nav-item-liquid.active .logo-text {
+    transform: translateY(6px);
+}
+
+/* ---- الـ SVG السائل للموجة أسفل الهيدر ---- */
+.liquid-indicator {
+    position: absolute;
+    bottom: -1px;
+    width: 120px;
+    height: 35px;
+    left: 50%;
+    transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.wave-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* الدائرة الوردية العائمة وسط قعر الموجة */
+.floating-pink-dot {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: #ff4a85;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(255, 74, 133, 0.3);
+    z-index: 5;
+}
+
+/* المنيو الجانبي */
+.dropdown-sidebar {
+    position: absolute;
+    top: 75px;
+    left: 40px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    width: 180px;
+    display: none;
+    z-index: 99;
+}
+.dropdown-sidebar.active { display: block; }
+.dropdown-sidebar ul { list-style: none; padding: 6px 0; }
+.dropdown-sidebar ul li a {
+    display: block;
+    padding: 10px 16px;
+    color: #334155;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* حاوية التوزيع الأساسي للموقع */
+.main-layout-container {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 75px);
+    overflow: hidden;
+}
+
+/* القائمة اليسرى للخدمات */
+.services-sidebar-left {
+    width: 300px;
+    background-color: #ffffff;
+    border-left: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+}
+.search-box-container { padding: 24px; }
+.sidebar-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    font-size: 13px;
+    outline: none;
+}
+.services-scroll-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 12px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* عناصر الخدمات النظيفة */
+.service-type-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s;
+}
+.service-item-name { font-size: 14px; font-weight: 600; color: #475569; }
+.service-item-count { font-size: 11px; color: #94a3b8; }
+.service-type-item:hover { background-color: #f8fafc; }
+.service-type-item.active { background-color: #f1f5f9; }
+.service-type-item.active .service-item-name { color: #0f172a; font-weight: 700; }
+
+/* ---- الجهة اليمنى والمساحات البيضاء ---- */
+.content-area-right {
+    flex: 1;
+    padding: 40px 50px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* تصميم الـ Empty State (المساحة البيضاء النظيفة فالأول) */
+.empty-state-view {
+    margin: auto;
+    text-align: center;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+.water-drop-icon-placeholder {
+    color: #cbd5e1;
+    animation: pulseLiquid 2s infinite ease-in-out;
+}
+.empty-state-view h2 { font-size: 22px; font-weight: 700; color: #334155; }
+.empty-state-view p { font-size: 14px; color: #64748b; line-height: 1.6; }
+
+@keyframes pulseLiquid {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* حاوية المحتوى الديناميكي */
+.dynamic-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    transition: opacity 0.4s ease;
+}
+
+.page-main-title { font-size: 28px; font-weight: 900; color: #0f172a; }
+
+/* الفلاتر */
+.market-filters-minimal {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eef2f6;
+}
+.min-filter-input {
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 13px;
+    background-color: #ffffff;
+    outline: none;
+}
+.btn-min-apply {
+    background-color: #0f172a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* الكروت المحاذية للخط الوهمي */
+.offers-results-container { display: flex; flex-direction: column; gap: 24px; }
+.premium-offer-card {
+    background: #ffffff;
+    border: 1px solid #eef2f6;
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+}
+.card-layout-grid { display: flex; justify-content: space-between; gap: 40px; }
+.card-main-content { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.worker-meta-row { display: flex; align-items: center; gap: 16px; }
+.worker-avatar-placeholder { width: 48px; height: 48px; background-color: #f1f5f9; border-radius: 50%; }
+.worker-name { font-size: 18px; font-weight: 700; color: #0f172a; }
+.worker-badge { font-size: 12px; color: #64748b; }
+.service-big-description { font-size: 15px; color: #334155; line-height: 1.7; max-width: 700px; }
+
+.card-side-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 160px;
+    border-right: 1px solid #f1f5f9;
+    padding-right: 24px;
+}
+.price-container { display: flex; flex-direction: column; }
+.price-label { font-size: 11px; color: #94a3b8; }
+.price-amount { font-size: 24px; font-weight: 900; color: #0f172a; }
+.price-amount small { font-size: 14px; }
+.actions-buttons-group { display: flex; gap: 8px; }
+.btn-primary-action { flex: 1; background-color: #0f172a; color: white; border: none; padding: 10px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+.btn-secondary-action { background: none; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; cursor: pointer; color: #64748b; display: flex; align-items: center; justify-content: center; }
+
+/* ---- تأثير كليك الموجة المائية (Ripple Effect) ---- */
+.water-ripple {
+    position: absolute;
+    background: rgba(59, 130, 246, 0.12);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleEffect 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    pointer-events: none;
+}
+@keyframes rippleEffect { to { transform: scale(3.5); opacity: 0; } }
+
+/* نافذة الشات السريعة */
+.chat-popup-container {
+    position: fixed;
+    bottom: 0;
+    left: 40px;
+    width: 300px;
+    height: 380px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+.chat-popup-container.active { transform: translateY(0); }
+.chat-popup-header { background: #0f172a; color: white; padding: 14px; display: flex; justify-content: space-between; align-items: center; border-radius: 8px 8px 0 0; font-weight: 700; font-size: 13px; }
+.chat-popup-header button { background: none; border: none; color: #94a3b8; cursor: pointer; }
+.chat-popup-body { flex: 1; padding: 16px; background: #fafafa; }
+.chat-system-msg { text-align: center; font-size: 12px; color: #94a3b8; }
+.chat-popup-footer { padding: 12px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; background: #ffffff; }
+.chat-popup-footer input { flex: 1; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; outline: none; }
+.chat-popup-footer button { background: #0f172a; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+
+/* الستايل الجديد للأيقونة فاش كيتكليكا عليها وترجع محفوظة */
+.btn-secondary-action.saved {
+    background-color: #0f172a; /* كترجع الخلفية كحلة */
+    border-color: #0f172a;
+    color: #ffffff; /* الأيقونة الداخية كترجع بيضاء */
+    transform: scale(1.05);
+}
+
+/* إضافة حركة ناعمة للأيقونة عند التغيير */
+.btn-secondary-action svg {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), fill 0.2s ease;
+}
+
+/* فاش كتكون محفوظة، الـ SVG كيتعمر بالكامل */
+.btn-secondary-action.saved svg {
+    fill: currentColor; /* كيعمر الوسط ديال الأيقونة باللون الأبيض */
+    transform: scale(1.1);
+}

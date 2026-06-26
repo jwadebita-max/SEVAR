@@ -93,21 +93,6 @@ body {
     padding: 0 24px;
 }
 
-/* زر Google القياسي الاحترافي */
-.btn-google {
-    background-color: #ffffff;
-    color: #334155;
-    border: 1px solid #cbd5e1;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    border-radius: 90px 0px 90px 0px !important;
-}
-
-.btn-google:hover {
-    background-color: #f8fafc;
-    border-color: #94a3b8;
-    transform: translateY(-1px);
-}
-
 /* زر الهاتف بلون المنصة الداكن الأنيق */
 .btn-phone {
     background-color: #1e293b;
